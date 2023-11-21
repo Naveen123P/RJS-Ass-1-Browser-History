@@ -93,6 +93,9 @@ class App extends Component {
 
   render() {
     const {searchInput, historyList} = this.state
+    const searchResult = historyList.filter(each =>
+      each.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
     return (
       <div className="bg-container1">
         <div className="search-bar">
@@ -103,7 +106,7 @@ class App extends Component {
           />
           <img
             src="https://assets.ccbp.in/frontend/react-js/search-img.png"
-            alt="..."
+            alt="search"
             className="search-img"
           />
           <input
@@ -115,19 +118,20 @@ class App extends Component {
           />
         </div>
         <ul className="bg-container3">
-          {historyList.map(each => (
-            <li className="listItem">
+          {searchResult.map(each => (
+            <li className="listItem" key={each.id}>
               <p>{each.timeAccessed}</p>
               <img src={each.logoUrl} alt="domain logo" className="logo-Img" />
               <p>
                 {each.title} <span>{each.domainUrl}</span>
               </p>
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
-                alt="delete"
-                className="delete-img"
-                onClick={this.onDelete}
-              />
+              <button onClick={this.onDelete} type="button">
+                <img
+                  src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
+                  alt="delete"
+                  className="delete-img"
+                />
+              </button>
             </li>
           ))}
         </ul>
