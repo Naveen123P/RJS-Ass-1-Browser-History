@@ -47,7 +47,7 @@ body {
 span {
   color: #475569;
 }
-.delete-img {
+button{
   align-self: center;
   justify-self: end;
   margin-right: 0px;
