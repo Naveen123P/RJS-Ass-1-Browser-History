@@ -104,28 +104,32 @@ class App extends Component {
             alt="app logo"
             className="logo-img"
           />
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/search-img.png"
-            alt="search"
-            className="search-img"
-          />
-          <input
-            type="search"
-            placeholder="Search history"
-            className="search-input"
-            onChange={this.onChangeSearchInput}
-            value={searchInput}
-          />
+          <div className="search-and-input">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/search-img.png"
+              alt="search"
+              className="search-img"
+            />
+            <input
+              type="search"
+              placeholder="Search history"
+              className="search-input"
+              onChange={this.onChangeSearchInput}
+              value={searchInput}
+            />
+          </div>
         </div>
         <ul className="bg-container3">
           {searchResult.map(each => (
             <li className="listItem" key={each.id}>
               <p>{each.timeAccessed}</p>
               <img src={each.logoUrl} alt="domain logo" className="logo-Img" />
-              <p>
-                {each.title} <span>{each.domainUrl}</span>
-              </p>
-              <button onClick={this.onDelete} type="button">
+              <div className="title-domain">
+                <p>{each.title}</p>
+                <p className="span">{`${each.domainUrl}`}</p>
+              </div>
+
+              <button key={each.id} onClick={this.onDelete} type="button">
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
                   alt="delete"
@@ -135,6 +139,7 @@ class App extends Component {
             </li>
           ))}
         </ul>
+        <p>There is no history to show</p>
       </div>
     )
   }
